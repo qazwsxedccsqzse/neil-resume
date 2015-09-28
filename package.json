@@ -1,14 +1,19 @@
 {
-	"name" : "neil-resume",
-	"version" : "0.0.1",
-	"description" : "Neil Resume",
-	"main" : "app.js",
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies" : {
-		"ejs" : ">= 2.3.3",
-		"ejs-local" : ">= 1.0.2",
-		"express" : ">= 3.4.8",
-	}
+  "name": "intro_module",
+  "version": "0.0.1",
+  "description": "practice writing nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qazwsxedccsqzse/neil-resume.git"
+  },
+  "author": "Neil Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qazwsxedccsqzse/neil-resume/issues"
+  },
+  "homepage": "https://github.com/qazwsxedccsqzse/neil-resume#readme"
 }
