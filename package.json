@@ -1,0 +1,14 @@
+{
+	"name" : "neil-resume",
+	"version" : "0.0.1",
+	"description" : "Neil Resume",
+	"main" : "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies" : {
+		"ejs" : ">= 2.3.3",
+		"ejs-local" : ">= 1.0.2",
+		"express" : ">= 3.4.8",
+	}
+}
