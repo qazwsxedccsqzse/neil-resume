@@ -57,7 +57,7 @@ a, a:hover, a:visited, a:active, a:focus{
 .nav-fixed{
 	width: 100%;
 	z-index: 2;
-	position: fixed;
+	position: fixed !important;
 }
 .illustration {
 	padding: 20px;

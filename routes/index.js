@@ -1,7 +1,7 @@
 
 exports.index = function(req,res){
 	// 以後再來處理無法動態LOAD CSS
-	var extra_links = ['/css/index.css'];
+	var extra_links = ['/css/index.css','/js/index.js'];
 	var experiences = [
 		{
 			job_title : 'PHP Developer',
