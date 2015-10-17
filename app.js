@@ -7,7 +7,7 @@ var routes = require('./routes');
 var engine = require('ejs-locals');
 
 // for openshift
-var server_port = process.env.PORT || 12345;
+var server_port = process.env.PORT || 8080;
 var server_ip_address = process.env.IP || '127.0.0.1';
 
 fs.exists = fs.exists || path.exists;
