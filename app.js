@@ -1,3 +1,4 @@
+require('./lib/db.js');
 var express = require('express');
 var app = express();
 var fs = require('fs');
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 
 app.get('/',routes.index);
+app.get('/importData',routes.importData);
 
 http.createServer(app).listen(app.get('port'),function(res,req){
 	console.log('Express Server runs on port ' + app.get('port'));

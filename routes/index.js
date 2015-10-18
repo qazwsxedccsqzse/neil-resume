@@ -1,7 +1,60 @@
+var mongoose = require('mongoose');
+var async = require('async');
+
+var WorkExp = mongoose.model('WorkExperience');
+var SchoolExp = mongoose.model('SchoolExperience');
+var Project = mongoose.model('Project');
+var SkillRate = mongoose.model('SkillsRate');
+var ContactMe = mongoose.model('ContactMe');
 
 exports.index = function(req,res){
+	var exp;
+	WorkExp.find({},function(err,experiences){
+		if(err){
+			console.log('Something wrong !');
+			return;
+		}
+		res.render
+	});
+	//console.log(exp);
+	//res.send(JSON.stringify(experiences));
+	res.end();
+}
+exports.index_old = function(req,res){
 	// 以後再來處理無法動態LOAD CSS
 	var extra_links = ['/css/index.css','/js/index.js'];
+	
+	var experiences = WorkExp.find();
+	var schoolExperience = SchoolExp.find();
+	var projects = Project.find();
+	var skillsRate = SkillRate.find();
+	var contactMe = ContactMe.find();
+
+	var personality = '負責認真虛心，喜歡團隊合作'+'<br/>';
+	personality += '樂於學習新技術，希望能用微薄的力量改變大環境'+'<br/>';
+	personality += '不排斥不同領域的問題，只要有時間一定學著解決'+'<br/>';
+
+	res.render( 'index',{
+		title : 'Neil Resume',
+		username : 'Neil Wang',
+		experiences : experiences,
+		schoolExperience : schoolExperience,
+		projects : projects,
+		skillsRate : skillsRate,
+		personality : personality,
+		contactMe : contactMe,
+		extra_links : extra_links
+	});
+
+	// declare nl2br function 
+	function nl2br (str, is_xhtml) {
+      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    }
+};
+
+exports.importData = function(req,res){
+	/*
 	var experiences = [
 		{
 			job_title : 'PHP Developer',
@@ -76,29 +129,51 @@ exports.index = function(req,res){
 		{ skillName : 'Nodejs', rate : 40 },
 		{ skillName : 'express', rate : 40 }
 	];
-	var contactMe = {
+	var contactMe = [{
 		email : 'qazwsxedccsqzse@gmail.com'
-	};
+	}];
 
-	var personality = '負責認真虛心，喜歡團隊合作'+'<br/>';
-	personality += '樂於學習新技術，希望能用微薄的力量改變大環境'+'<br/>';
-	personality += '不排斥不同領域的問題，只要有時間一定學著解決'+'<br/>';
-
-	res.render( 'index',{
-		title : 'Neil Resume',
-		username : 'Neil Wang',
-		experiences : experiences,
-		schoolExperience : schoolExperience,
-		projects : projects,
-		skillsRate : skillsRate,
-		personality : personality,
-		contactMe : contactMe,
-		extra_links : extra_links
-	});
-
-	// declare nl2br function 
-	function nl2br (str, is_xhtml) {
-      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
-      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-    }
+	for(var x in experiences){
+		new WorkExp(experiences[x]).save(function(err){
+			if(err){
+				console.log('Something Wrong when saving WorkExp !');
+				console.log(err);
+			}
+		});
+	}
+	for(var x in schoolExperience){
+		new SchoolExp(schoolExperience[x]).save(function(err){
+			if(err){
+				console.log('Something Wrong when saving SchoolExp !');
+				console.log(err);
+			}
+		});
+	}
+	for(var x in projects){
+		new Project(projects[x]).save(function(err){
+			if(err){
+				console.log('Something Wrong when saving Project !');
+				console.log(err);
+			}
+		});
+	}
+	for(var x in skillsRate){
+		new SkillRate(skillsRate[x]).save(function(err){
+			if(err){
+				console.log('Something Wrong when saving SkillRate !');
+				console.log(err);
+			}
+		});
+	}
+	for(var x in contactMe){
+		new ContactMe(contactMe[x]).save(function(err){
+			if(err){
+				console.log('Something Wrong when saving ContactMe !');
+				console.log(err);
+			}
+		});
+	}
+	*/
+	res.send('Import success');
+	res.end();
 };
