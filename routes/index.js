@@ -8,14 +8,67 @@ var SkillRate = mongoose.model('SkillsRate');
 var ContactMe = mongoose.model('ContactMe');
 
 exports.index = function(req,res){
-	var exp;
-	WorkExp.find({},function(err,experiences){
-		if(err){
-			console.log('Something wrong !');
-			return;
+	async.series(
+		[
+			function(callback){
+				WorkExp.find({},function(err,experiences){
+					if(err){
+						console.log('Something wrong !');
+						return;
+					}
+				}).exec(callback);
+			},
+			function(callback){
+				SchoolExp.find({},function(err,schoolExperience){
+					if(err){
+						console.log('Something wrong 2 !');
+						return;
+					}
+				}).exec(callback); 
+			},
+			function(callback){
+				Project.find({},function(err,projects){
+					if(err){
+						console.log('Something wrong 3 !');
+						return;
+					}
+				}).exec(callback);
+			},
+			function(callback){
+				SkillRate.find({},function(err,skillsRate){
+					if(err){
+						console.log('Something wrong 4 !');
+					}
+				}).exec(callback);
+			},
+			function(callback){
+				ContactMe.find({},function(err,contactMe){
+					if(err){
+						console.log('Something wrong 5 !');
+					}
+				}).exec(callback);
+			}
+		],function(err,results){
+			var personality = '負責認真虛心，喜歡團隊合作'+'<br/>';
+			personality += '樂於學習新技術，希望能用微薄的力量改變大環境'+'<br/>';
+			personality += '不排斥不同領域的問題，只要有時間一定學著解決'+'<br/>';
+			var extra_links = ['/css/index.css','/js/index.js'];
+			
+			console.log(results[4]);
+			/*
+			res.render( 'index',{
+				title : 'Neil Resume',
+				username : 'Neil Wang',
+				experiences : results[0],
+				schoolExperience : results[1],
+				projects : results[2],
+				skillsRate : results[3],
+				personality : personality,
+				contactMe : results[4],
+				extra_links : extra_links
+			});*/
 		}
-		res.render
-	});
+	);
 	//console.log(exp);
 	//res.send(JSON.stringify(experiences));
 	res.end();
