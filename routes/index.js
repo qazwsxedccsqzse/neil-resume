@@ -53,9 +53,11 @@ exports.index = function(req,res){
 			personality += '樂於學習新技術，希望能用微薄的力量改變大環境'+'<br/>';
 			personality += '不排斥不同領域的問題，只要有時間一定學著解決'+'<br/>';
 			var extra_links = ['/css/index.css','/js/index.js'];
+/*
+			for(var x in results[2]){
+				console.log(results[2][x].usingSkills);
+			}*/
 			
-			console.log(results[4]);
-			/*
 			res.render( 'index',{
 				title : 'Neil Resume',
 				username : 'Neil Wang',
@@ -66,12 +68,12 @@ exports.index = function(req,res){
 				personality : personality,
 				contactMe : results[4],
 				extra_links : extra_links
-			});*/
+			});
 		}
 	);
 	//console.log(exp);
 	//res.send(JSON.stringify(experiences));
-	res.end();
+	//res.end();
 }
 exports.index_old = function(req,res){
 	// 以後再來處理無法動態LOAD CSS

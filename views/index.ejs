@@ -76,8 +76,10 @@
 	      <li><a href="<%= projects[x].url%>" target="_blank"><%= projects[x].projectName %></a></li>
         <li class="illustration illustration-green"><%= projects[x].description %></li>
 	      <ul class="experience-inner-list list-inline">
-	        <% for (var y in projects[x].usingSkills) { %>
-	        <li><%= projects[x].usingSkills[y] %></li>
+          <% var usingSkills = projects[x].usingSkills %>
+          <% console.log(usingSkills.toString()+ " ,length = "+usingSkills.length) %>
+	        <% for (var y = 0; y <= usingSkills.length-1; y++) { %>
+	        <li><%= usingSkills[y] %></li>
 	        <% } %>
 	      </ul>
         <li class="margin-bottom-20"></li>
@@ -117,12 +119,14 @@
     <div class="title margin-bottom-20">
       <h1>聯絡資訊 Contact Me</h1>
     </div>
+    <% for (var x in contactMe){ %>
     <div class="contact">
-      <p><%= contactMe.email%></p>
+      <p><%= contactMe[x].email%></p>
       <a class="btn btn-social-icon btn-linkedin" target="_blank" href="https://tw.linkedin.com/pub/neil-wang/1b/175/133"><i class="fa fa-linkedin"></i></a>
       <a class="btn btn-social-icon btn-facebook" target="_blank" href="https://www.facebook.com/neil.wang.961"><i class="fa fa-facebook"></i></a>
       <a class="btn btn-social-icon btn-google" target="_blank" href="https://plus.google.com/u/0/101439206602894853915/posts"><i class="fa custom-google"></i></a>
     </div>
+    <% } %>
   </div>
 </div>
 <% } %>
