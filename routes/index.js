@@ -7,6 +7,9 @@ var Project = mongoose.model('Project');
 var SkillRate = mongoose.model('SkillsRate');
 var ContactMe = mongoose.model('ContactMe');
 
+/**
+ * 使用流程控制的library來控制,當所有function都執行完才將變數拿去render
+ */
 exports.index = function(req,res){
 	async.series(
 		[
@@ -53,10 +56,6 @@ exports.index = function(req,res){
 			personality += '樂於學習新技術，希望能用微薄的力量改變大環境'+'<br/>';
 			personality += '不排斥不同領域的問題，只要有時間一定學著解決'+'<br/>';
 			var extra_links = ['/css/index.css','/js/index.js'];
-/*
-			for(var x in results[2]){
-				console.log(results[2][x].usingSkills);
-			}*/
 			
 			res.render( 'index',{
 				title : 'Neil Resume',
@@ -71,42 +70,7 @@ exports.index = function(req,res){
 			});
 		}
 	);
-	//console.log(exp);
-	//res.send(JSON.stringify(experiences));
-	//res.end();
 }
-exports.index_old = function(req,res){
-	// 以後再來處理無法動態LOAD CSS
-	var extra_links = ['/css/index.css','/js/index.js'];
-	
-	var experiences = WorkExp.find();
-	var schoolExperience = SchoolExp.find();
-	var projects = Project.find();
-	var skillsRate = SkillRate.find();
-	var contactMe = ContactMe.find();
-
-	var personality = '負責認真虛心，喜歡團隊合作'+'<br/>';
-	personality += '樂於學習新技術，希望能用微薄的力量改變大環境'+'<br/>';
-	personality += '不排斥不同領域的問題，只要有時間一定學著解決'+'<br/>';
-
-	res.render( 'index',{
-		title : 'Neil Resume',
-		username : 'Neil Wang',
-		experiences : experiences,
-		schoolExperience : schoolExperience,
-		projects : projects,
-		skillsRate : skillsRate,
-		personality : personality,
-		contactMe : contactMe,
-		extra_links : extra_links
-	});
-
-	// declare nl2br function 
-	function nl2br (str, is_xhtml) {
-      var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
-      return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-    }
-};
 
 exports.importData = function(req,res){
 	/*
